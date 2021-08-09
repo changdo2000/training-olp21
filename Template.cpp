@@ -23,7 +23,23 @@ using namespace std;
 
 //=== euclidean extended ===
 //{
-
+    void Diophante(long long a, long long b, long long &d, long long&x)
+    {
+      long long m, n, r, q, xm, xn, xr;
+      m = a; xm = 1;
+      n = b; xn = 0;
+      while (n != 0)
+      {
+        q = m / n;
+        r = m - q * n;
+        xr = xm - q * xn;
+        m = n; xm = xn;
+        n = r; xn = xr;
+      }
+      d = m;
+      x = xm;
+      cout << d << " " << x << '\n';
+    }
 //}
 
 //=== matrix
