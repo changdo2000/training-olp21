@@ -4,18 +4,18 @@ using namespace std;
 
 //=== exponentiation  ===
 //{
-    long long   pow(long long a, long long b)
+    long long __pow(long long a, long long b)
     {
         if (b == 0) return 1;
-        long long re = Pow(a,  b/2);
+        long long re = __pow(a,  b/2);
         if (b % 2 == 0) return re * re;
         else return re * re * a;
     }
 
-    long long pow(long long a, long long b, long long mod)
+    long long __pow(long long a, long long b, long long mod)
     {
         if (b == 0) return 1;
-        long long re = Pow(a,  b/2);
+        long long re = __pow(a,  b/2);
         if (b % 2 == 0) return re * re % mod;
         else return (re * re % mod) * a % mod;
     }
@@ -42,7 +42,7 @@ using namespace std;
     }
 //}
 
-//=== matrix
+//=== matrix ===
 //{
     struct matrix {
         long long c[2][2];
@@ -61,6 +61,29 @@ using namespace std;
         return r;
     }
 //}
+
+
+
+//=== prime ===
+    vector <int> Eratosthenes(int limit)
+    {
+        vector <int> isPrime(limit + 1, 0);
+
+        isPrime[0] = 1;
+        isPrime[1] = 1;
+        for (int i=2; i<=sqrt(limit); i++)
+            if (isPrime[i] == 0)
+            {
+                int j = i * i;
+                while (j <= limit)
+                {
+                    isPrime[j] = 1;
+                    j += i;
+                }
+            }
+        return isPrime;
+    }
+
 
 int main()
 {
