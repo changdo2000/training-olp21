@@ -131,6 +131,19 @@ using namespace std;
         }
         return Z;
     }
+
+    /// Hash
+    vector <long long> Hash(string s, long long base, long long MOD){
+        int n = s.length();
+        vector <long long> Hash(n + 1);
+        for (int i=1; i<=n; i++)
+            Hash[i] = (Hash[i-1] * base % MOD + s[i-1] + MOD * MOD) % MOD;
+        return Hash;
+    }
+
+    /// KMP
+
+
 //}
 
 /*
