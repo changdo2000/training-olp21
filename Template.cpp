@@ -96,6 +96,44 @@ using namespace std;
     }
 //}
 
+//=== string ===
+//{
+    /// Z Algorithm
+    vector <int> Z(string s){
+        int n = s.length();
+        vector <int> Z(n);
+        int L, R, k;
+        L = R = 0;
+        for (int i = 1; i < n; ++i)
+        {
+            if (i > R)
+            {
+                L = R = i;
+                while (R<n && s[R-L] == s[R])
+                    R++;
+                Z[i] = R-L;
+                R--;
+            }
+            else
+            {
+                k = i-L;
+                if (Z[k] < R-i+1)
+                    Z[i] = Z[k];
+                else
+                {
+                    L = i;
+                    while (R<n && s[R-L] == s[R])
+                        R++;
+                    Z[i] = R-L;
+                    R--;
+                }
+            }
+        }
+        return Z;
+    }
+//}
+
+/*
 //=== geometry ===
 //{
     ///minimum enclosing circle O(N)
@@ -219,7 +257,23 @@ using namespace std;
     }
 
 //}
+*/
 int main()
 {
+    string text = "abababab";
+    string pattern = "ab";
+    string concat = pattern + "$" + text;
+    int l = concat.length();
 
+    // Construct Z array
+    vector <int> z = Z(concat);
+    // now looping through Z array for matching condition
+    for (int i = 0; i < l; ++i)
+    {
+        // if Z[i] (matched region) is equal to pattern
+        // length we got the pattern
+        if (z[i] == pattern.length())
+            cout << "Pattern found at index "
+                << i - pattern.length() -1 << endl;
+    }
 }
