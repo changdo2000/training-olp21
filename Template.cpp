@@ -142,7 +142,7 @@ using namespace std;
     }
 
     /// KMP
-
+    /// bug kmp :v
 
 //}
 
@@ -273,20 +273,5 @@ using namespace std;
 */
 int main()
 {
-    string text = "abababab";
-    string pattern = "ab";
-    string concat = pattern + "$" + text;
-    int l = concat.length();
 
-    // Construct Z array
-    vector <int> z = Z(concat);
-    // now looping through Z array for matching condition
-    for (int i = 0; i < l; ++i)
-    {
-        // if Z[i] (matched region) is equal to pattern
-        // length we got the pattern
-        if (z[i] == pattern.length())
-            cout << "Pattern found at index "
-                << i - pattern.length() -1 << endl;
-    }
 }
